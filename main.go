@@ -36,7 +36,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/push"
 
-	"github.com/bborbe/agent/agent/code/pkg/factory"
+	"github.com/bborbe/agent-code/pkg/factory"
 	agentlib "github.com/bborbe/agent/lib"
 	delivery "github.com/bborbe/agent/lib/delivery"
 	libmetrics "github.com/bborbe/agent/lib/metrics"
