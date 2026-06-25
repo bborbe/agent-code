@@ -15,7 +15,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	agentlib "github.com/bborbe/agent/lib"
+	agentlib "github.com/bborbe/agent"
 	"github.com/bborbe/errors"
 	libsentry "github.com/bborbe/sentry"
 	"github.com/bborbe/service"
