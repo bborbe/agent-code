@@ -7,11 +7,11 @@ package steps_test
 import (
 	"context"
 
+	agentlib "github.com/bborbe/agent/lib"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
 	"github.com/bborbe/agent-code/pkg/steps"
-	agentlib "github.com/bborbe/agent/lib"
 )
 
 var _ = Describe("PlanStep", func() {

@@ -10,15 +10,15 @@ package factory
 import (
 	"context"
 
+	agentlib "github.com/bborbe/agent/lib"
+	delivery "github.com/bborbe/agent/lib/delivery"
+	healthcheck "github.com/bborbe/agent/lib/healthcheck"
 	"github.com/bborbe/cqrs/base"
 	libkafka "github.com/bborbe/kafka"
 	libtime "github.com/bborbe/time"
 	"github.com/bborbe/vault-cli/pkg/domain"
 
 	"github.com/bborbe/agent-code/pkg/steps"
-	agentlib "github.com/bborbe/agent/lib"
-	delivery "github.com/bborbe/agent/lib/delivery"
-	healthcheck "github.com/bborbe/agent/lib/healthcheck"
 )
 
 // CreateSyncProducer creates a Kafka sync producer.

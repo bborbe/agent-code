@@ -18,10 +18,9 @@ import (
 	"context"
 	"fmt"
 
+	agentlib "github.com/bborbe/agent/lib"
 	"github.com/bborbe/errors"
 	"github.com/bborbe/vault-cli/pkg/domain"
-
-	agentlib "github.com/bborbe/agent/lib"
 )
 
 // Plan is the planning-phase output. Read by execute step.

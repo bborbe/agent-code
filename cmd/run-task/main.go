@@ -15,13 +15,13 @@ import (
 	"os/signal"
 	"syscall"
 
+	agentlib "github.com/bborbe/agent/lib"
 	"github.com/bborbe/errors"
 	libsentry "github.com/bborbe/sentry"
 	"github.com/bborbe/service"
 	"github.com/bborbe/vault-cli/pkg/domain"
 
 	"github.com/bborbe/agent-code/pkg/factory"
-	agentlib "github.com/bborbe/agent/lib"
 )
 
 func main() {
