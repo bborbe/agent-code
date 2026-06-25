@@ -1,5 +1,5 @@
-include ../../../../Makefile.variables
-include ../../../../common.env
+include ../../Makefile.variables
+include ../../common.env
 
 TASK_FILE ?= dummy-task.md
 BRANCH := dev
@@ -7,6 +7,12 @@ CLAUDE_CONFIG_DIR ?= $(HOME)/.claude-agent
 AGENT_DIR ?= $(shell cd ../.. && pwd)/agent
 MODEL ?= sonnet
 ALLOWED_TOOLS ?= Grep,Read
+
+# No-op so the recursive `apply` sweep from the parent Makefile.docker doesn't
+# choke on this directory.
+.PHONY: apply
+apply:
+	@echo "skip apply for cmd/run-task (local CLI, not deployed)"
 
 generate-dummy-task:
 	@echo '---' > $(TASK_FILE)
