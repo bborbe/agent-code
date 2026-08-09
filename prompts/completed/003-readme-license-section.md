@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: Added License section to README.md and docs changelog entry to CHANGELOG.md
+execution_id: repo-exec-003-readme-license-section
+dark-factory-version: v0.193.0
 created: "2026-08-09T16:35:00Z"
 queued: "2026-08-09T16:29:56Z"
+started: "2026-08-09T16:39:22Z"
+completed: "2026-08-09T16:43:54Z"
 ---
 
 <summary>

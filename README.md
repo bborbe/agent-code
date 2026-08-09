@@ -93,3 +93,7 @@ Admin endpoints:
 - `lib/delivery/` — shared Kafka result publishing
 - `task/controller/` — Obsidian→Kafka event source
 - `task/executor/` — Kafka→K8s Job spawner
+
+## License
+
+BSD-style license. See [LICENSE](LICENSE) file for details.
