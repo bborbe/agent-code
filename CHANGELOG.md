@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- docs: add License section to README.md
+- test: add Ginkgo suite bootstrap for root command package
+- refactor: replace error-returning `factory.CreateSyncProducer` with a `SyncProducerProvider` — construction stays in the factory, the error surfaces at `Get`
+
 ## v0.1.3
 
 - fix(deps): bump klauspost/compress v1.18.7 (GO-2026-5841, OOB read in s2) — restores a green `make vulncheck` baseline
