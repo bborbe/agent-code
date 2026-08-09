@@ -8,8 +8,6 @@
 package factory
 
 import (
-	"context"
-
 	agentlib "github.com/bborbe/agent"
 	delivery "github.com/bborbe/agent/delivery"
 	healthcheck "github.com/bborbe/agent/healthcheck"
@@ -20,15 +18,6 @@ import (
 
 	"github.com/bborbe/agent-code/pkg/steps"
 )
-
-// CreateSyncProducer creates a Kafka sync producer.
-func CreateSyncProducer(
-	ctx context.Context,
-	brokers libkafka.Brokers,
-	agentName string,
-) (libkafka.SyncProducer, error) {
-	return libkafka.NewSyncProducerWithName(ctx, brokers, agentName)
-}
 
 // CreateKafkaResultDeliverer creates a ResultDeliverer that publishes task
 // updates to Kafka via CQRS commands. Uses the passthrough content generator

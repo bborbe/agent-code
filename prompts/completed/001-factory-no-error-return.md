@@ -1,6 +1,12 @@
 ---
-status: draft
+status: completed
+summary: Removed factory.CreateSyncProducer and moved Kafka SyncProducer construction directly into main.go entry point
+execution_id: repo-exec-001-factory-no-error-return
+dark-factory-version: v0.193.0
 created: "2026-08-09T16:35:00Z"
+queued: "2026-08-09T16:29:56Z"
+started: "2026-08-09T16:30:25Z"
+completed: "2026-08-09T16:34:38Z"
 ---
 
 <summary>
