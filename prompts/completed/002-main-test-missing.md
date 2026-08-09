@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: Added Ginkgo suite bootstrap to root command package matching sibling cmd/run-task pattern
+execution_id: repo-exec-002-main-test-missing
+dark-factory-version: v0.193.0
 created: "2026-08-09T16:35:00Z"
 queued: "2026-08-09T16:29:56Z"
+started: "2026-08-09T16:34:39Z"
+completed: "2026-08-09T16:39:21Z"
 ---
 
 <summary>

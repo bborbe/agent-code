@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- test: add Ginkgo suite bootstrap for root command package
 - refactor: move Kafka SyncProducer construction from factory.CreateSyncProducer to entry point
 
 ## v0.1.3
