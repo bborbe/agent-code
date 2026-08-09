@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - docs: add License section to README.md
 - test: add Ginkgo suite bootstrap for root command package
-- refactor: move Kafka SyncProducer construction from factory.CreateSyncProducer to entry point
+- refactor: replace error-returning `factory.CreateSyncProducer` with a `SyncProducerProvider` — construction stays in the factory, the error surfaces at `Get`
 
 ## v0.1.3
 

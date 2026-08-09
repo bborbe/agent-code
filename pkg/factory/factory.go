@@ -8,10 +8,13 @@
 package factory
 
 import (
+	"context"
+
 	agentlib "github.com/bborbe/agent"
 	delivery "github.com/bborbe/agent/delivery"
 	healthcheck "github.com/bborbe/agent/healthcheck"
 	"github.com/bborbe/cqrs/base"
+	"github.com/bborbe/errors"
 	libkafka "github.com/bborbe/kafka"
 	libtime "github.com/bborbe/time"
 	"github.com/bborbe/vault-cli/pkg/domain"
@@ -58,6 +61,36 @@ func CreateAgent() *agentlib.Agent {
 		agentlib.NewPhase(domain.TaskPhaseExecution, steps.NewExecuteStep()),
 		agentlib.NewPhase("ai_review", steps.NewVerifyStep()),
 	)
+}
+
+// SyncProducerProvider defers Kafka sync-producer construction to call time.
+//
+// The construction can fail, but a Create* factory must not return an error
+// (rule go-factory/no-error-return) and Kafka wiring must not live in main.go
+// (rules go-factory/factory-moved, go-factory/main-holds-only-boot-lifecycle-config).
+// A provider satisfies all three: the factory returns it without error, and the
+// caller receives the error from Get at the point it can act on it.
+type SyncProducerProvider interface {
+	Get(ctx context.Context) (libkafka.SyncProducer, error)
+}
+
+type syncProducerProvider struct {
+	brokers   libkafka.Brokers
+	agentName string
+}
+
+func (s *syncProducerProvider) Get(ctx context.Context) (libkafka.SyncProducer, error) {
+	syncProducer, err := libkafka.NewSyncProducerWithName(ctx, s.brokers, s.agentName)
+	if err != nil {
+		return nil, errors.Wrap(ctx, err, "create sync producer")
+	}
+	return syncProducer, nil
+}
+
+// CreateSyncProducerProvider returns a provider that builds the Kafka sync
+// producer on demand. Pure composition — no I/O until Get is called.
+func CreateSyncProducerProvider(brokers libkafka.Brokers, agentName string) SyncProducerProvider {
+	return &syncProducerProvider{brokers: brokers, agentName: agentName}
 }
 
 // CreateAgentProvider wires the per-task-type dispatch for agent-code.
