@@ -1,6 +1,6 @@
 module github.com/bborbe/agent-code
 
-go 1.26.6
+go 1.27.0
 
 require (
 	github.com/IBM/sarama v1.50.3

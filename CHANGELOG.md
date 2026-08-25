@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## Unreleased
+
+- chore: update Go to 1.27.0
+
 ## v0.1.7
 
 - exclude no-fix docker/containerd advisories in checker config (GO-2026-4883/4887/5064/5338/5622/5932 v1 no-fix)
