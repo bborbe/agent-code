@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## Unreleased
+
+- chore: update github.com/IBM/sarama to v1.60.2, github.com/bborbe/agent to v0.83.1, github.com/bborbe/cqrs to v0.6.8, github.com/bborbe/errors to v1.5.21, github.com/bborbe/kafka to v1.25.9, github.com/bborbe/sentry to v1.9.27, github.com/bborbe/service to v1.10.9, github.com/bborbe/time to v1.27.10, github.com/bborbe/vault-cli to v0.116.2, github.com/onsi/ginkgo/v2 to v2.32.1, github.com/prometheus/client_golang to v1.24.1
+
 ## v0.1.8
 
 - chore: update Go to 1.27.0
