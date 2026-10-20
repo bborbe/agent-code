@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## Unreleased
+## v0.2.9
 
 - chore: update github.com/bborbe/time to v1.27.17, github.com/bborbe/vault-cli to v0.174.1
 
