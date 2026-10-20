@@ -10,8 +10,8 @@ require (
 	github.com/bborbe/kafka v1.28.3
 	github.com/bborbe/sentry v1.10.4
 	github.com/bborbe/service v1.11.0
-	github.com/bborbe/time v1.27.16
-	github.com/bborbe/vault-cli v0.174.0
+	github.com/bborbe/time v1.27.17
+	github.com/bborbe/vault-cli v0.174.1
 	github.com/golang/glog v1.2.5
 	github.com/onsi/ginkgo/v2 v2.33.1
 	github.com/onsi/gomega v1.44.0

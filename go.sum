@@ -42,12 +42,12 @@ github.com/bborbe/service v1.11.0 h1:uiUEIT3DyAh+vNRgzufpM0Wm4YoeT/yu/Co8i+03oig
 github.com/bborbe/service v1.11.0/go.mod h1:y+bMxW+YOopLaBQD29QWVvBUb5H5hU32C4uYzgR5XV8=
 github.com/bborbe/strimzi v1.8.20 h1:m4/Ta4o8sHzyGOL4TPi0cIyXo8ufOQdTgVjhcAGEzI8=
 github.com/bborbe/strimzi v1.8.20/go.mod h1:R2pxE0lVPX5g8Cq65DWi2m+9e5WM17gkERMysKqc0fo=
-github.com/bborbe/time v1.27.16 h1:hh8wIdZbVq5aB9F4MzrADUZ1aT2C2LqIlpUT1YA+d0g=
-github.com/bborbe/time v1.27.16/go.mod h1:KfAP+CMzEZboQEvOT17yqe0YFY5SUEb7W9jQxkRP/Zc=
+github.com/bborbe/time v1.27.17 h1:5BLF2HNIrjUOJGfvX3qcQ7DCeQvZDJ3Wfmpoi8IH/D4=
+github.com/bborbe/time v1.27.17/go.mod h1:4A8eWGMGLU2eLBuAQ9JhPzvscmyIttKdAzpi6W+0RWM=
 github.com/bborbe/validation v1.5.5 h1:cVwPRX9sNFlPe9dn6iilvHKdSVhn1k5J6D9Zh7W5Zvo=
 github.com/bborbe/validation v1.5.5/go.mod h1:nx0apwM6GpmR76MnNgrWPYZofLSi5GKwo+MyGRdTAOY=
-github.com/bborbe/vault-cli v0.174.0 h1:7Yu0RWnlfyuvvB2phrWLzqkVcMYg46KOna0JFiWVxpI=
-github.com/bborbe/vault-cli v0.174.0/go.mod h1:4+psuBD8AkVbT5Ulab0qUebUMd+Z8AZp7fAe9XJgE/g=
+github.com/bborbe/vault-cli v0.174.1 h1:F76lNpCx1g1r7Mfg4zi0r77zw/tivn6UC5dgEgs4TEI=
+github.com/bborbe/vault-cli v0.174.1/go.mod h1:4+psuBD8AkVbT5Ulab0qUebUMd+Z8AZp7fAe9XJgE/g=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
