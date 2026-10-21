@@ -1,6 +1,8 @@
 ---
-status: approved
+status: prompted
 approved: "2026-10-20T19:18:11Z"
+generating: "2026-10-21T14:49:33Z"
+prompted: "2026-10-21T14:51:20Z"
 branch: dark-factory/package-layout-docs
 ---
 
