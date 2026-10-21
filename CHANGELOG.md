@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## v0.2.10
+
+- chore: update Go to 1.27.3, github.com/bborbe/agent to v0.111.0, github.com/bborbe/kafka to v1.28.4, github.com/bborbe/sentry to v1.10.5, github.com/bborbe/strimzi to v1.8.21, github.com/bborbe/vault-cli to v0.177.0
+
 ## v0.2.9
 
 - chore: update github.com/bborbe/time to v1.27.17, github.com/bborbe/vault-cli to v0.174.1
