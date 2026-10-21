@@ -1,8 +1,10 @@
 ---
-status: prompted
+status: completed
 approved: "2026-10-20T19:18:11Z"
 generating: "2026-10-21T14:49:33Z"
 prompted: "2026-10-21T14:51:20Z"
+verifying: "2026-10-21T15:12:20Z"
+completed: "2026-10-21T15:12:26Z"
 branch: dark-factory/package-layout-docs
 ---
 
