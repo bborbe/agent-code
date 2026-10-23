@@ -1,0 +1,24 @@
+time=2026-10-21T16:49:33.334+02:00 level=INFO msg="effective config" maxContainers=3 maxContainersSource=default containerImage=docker.io/bborbe/claude-yolo:v0.13.2 model=MiniMax-M2.7-highspeed modelSource=arg workflow=direct workflowSource=project pr=false prSource=project autoRelease=false autoReleaseSource=project autoMerge=false autoMergeSource=project verificationGate=false validationCommand="make precommit" testCommand="make test" debounceMs=500 hideGit=true hideGitSource=arg autoApprovePrompts=true autoApprovePromptsSource=arg autoGeneratePrompts=true autoGeneratePromptsSource=arg dirtyFileThreshold=0 dirtyFileThresholdSource=default promptsInboxDir=prompts promptsInProgressDir=prompts/in-progress promptsCompletedDir=prompts/completed promptsLogDir=prompts/log preflightCommand="make precommit" preflightInterval=8h healthcheckEnabled=true healthcheckEnabledSource=default healthcheckInterval=8h healthcheckIntervalSource=default backend=local backendSource=arg envFromGlobal=[] envProjectOverrides=[] envProjectOnly=[]
+time=2026-10-21T16:49:33.334+02:00 level=INFO msg="watching for queued prompts" dir=prompts/in-progress
+time=2026-10-21T16:49:33.336+02:00 level=INFO msg="healthcheck gate disabled"
+time=2026-10-21T16:49:33.336+02:00 level=INFO msg="watcher started" dir=/home/node/.cache/github-dark-factory-agent/work/be9d3b2c-65e2-5dbc-a8d8-b94acb40c014/prompts/in-progress
+time=2026-10-21T16:49:33.336+02:00 level=INFO msg="processor started"
+time=2026-10-21T16:49:33.336+02:00 level=INFO msg="spec watcher started" dir=/home/node/.cache/github-dark-factory-agent/work/be9d3b2c-65e2-5dbc-a8d8-b94acb40c014/specs/in-progress
+time=2026-10-21T16:49:33.337+02:00 level=INFO msg="spec file created in in-progress, triggering generation" path=/home/node/.cache/github-dark-factory-agent/work/be9d3b2c-65e2-5dbc-a8d8-b94acb40c014/specs/in-progress/001-package-layout-docs.md
+time=2026-10-21T16:49:38.338+02:00 level=INFO msg="nothing to do, waiting for changes"
+time=2026-10-21T16:50:38.338+02:00 level=INFO msg="nothing to do, waiting for changes"
+time=2026-10-21T16:51:33.193+02:00 level=INFO msg="migrated spec refs to full slugs" file=spec-001-package-layout-docs.md updated=1
+time=2026-10-21T16:51:33.198+02:00 level=INFO msg="auto-approve: auditing generated prompt" prompt=spec-001-package-layout-docs.md
+time=2026-10-21T16:51:33.339+02:00 level=INFO msg="startup: checking prompted spec" spec=001-package-layout-docs
+time=2026-10-21T16:51:43.338+02:00 level=INFO msg="nothing to do, waiting for changes"
+time=2026-10-21T16:52:33.338+02:00 level=INFO msg="startup: checking prompted spec" spec=001-package-layout-docs
+time=2026-10-21T16:52:43.339+02:00 level=INFO msg="nothing to do, waiting for changes"
+time=2026-10-21T16:52:50.657+02:00 level=INFO msg="auto-approve: approved generated prompt" prompt=spec-001-package-layout-docs.md
+time=2026-10-21T16:52:51.252+02:00 level=INFO msg="lock acquired" prompt_id=001-spec-001-package-layout-docs.md
+time=2026-10-21T16:52:51.253+02:00 level=INFO msg="found queued prompt" prompt_id=001-spec-001-package-layout-docs.md
+time=2026-10-21T16:52:51.253+02:00 level=INFO msg="executing prompt" prompt_id=001-spec-001-package-layout-docs spec_id=001-package-layout-docs container="" workflow_type=direct title=001-spec-001-package-layout-docs
+time=2026-10-21T16:52:51.253+02:00 level=INFO msg="syncing with remote default branch" prompt_id=001-spec-001-package-layout-docs spec_id=001-package-layout-docs container="" workflow_type=direct
+time=2026-10-21T16:52:51.995+02:00 level=INFO msg="container assigned" prompt_id=001-spec-001-package-layout-docs spec_id=001-package-layout-docs container="" workflow_type=direct container_old="" container=be9d3b2c-65e2-5dbc-a8d8-b94acb40c014-exec-001-spec-001-package-layout-docs workflow_step=acquire_container
+time=2026-10-21T17:12:20.097+02:00 level=INFO msg="docker container exited" prompt_id=001-spec-001-package-layout-docs spec_id=001-package-layout-docs container="" workflow_type=direct container=be9d3b2c-65e2-5dbc-a8d8-b94acb40c014-exec-001-spec-001-package-layout-docs exit_code=0 workflow_step=run_claude
+time=2026-10-21T17:12:20.110+02:00 level=INFO msg="completion report" status=success summary="Added a Package layout section to README describing pkg/factory and pkg/steps, plus an Unreleased changelog entry, with all verification checks passing."
+time=2026-10-21T17:12:20.157+02:00 level=INFO msg="moved to completed" prompt_id=001-spec-001-package-layout-docs spec_id=001-package-layout-docs container="" workflow_type=direct container=be9d3b2c-65e2-5dbc-a8d8-b94acb40c014-exec-001-spec-001-package-layout-docs

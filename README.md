@@ -84,6 +84,11 @@ Admin endpoints:
 - Dev: <https://dev.quant.benjamin-borbe.de/admin/agent-claude/setloglevel/3>
 - Prod: <https://prod.quant.benjamin-borbe.de/admin/agent-claude/setloglevel/3>
 
+## Package layout
+
+- `pkg/factory/` — wires the binary's concrete dependencies: the Kafka and file result deliverers, the Kafka sync-producer provider, and the agent provider.
+- `pkg/steps/` — the three pure-Go phase steps of the reference math agent (plan, execute, verify); none of them makes an AI call.
+
 ## Related
 
 - `pkg/prompts/` — embedded prompts (`workflow.md`, `output-format.md`)
