@@ -48,6 +48,11 @@ if [ -z "${TEAMVAULT_CLI_CONFIG:-}" ]; then
 fi
 [ -n "${TEAMVAULT_CLI_CONFIG:-}" ] ||
 	die "no teamvault-cli config found (set TEAMVAULT_CLI_CONFIG, or TEAMVAULT_CONFIG as the CLI reads it)"
+# An explicit override short-circuits the loop above, so the resolved path is tested
+# here. The hand-typed value is exactly the case a human gets wrong, and it deserves
+# the named diagnostic rather than whatever teamvault-cli prints.
+[ -f "${TEAMVAULT_CLI_CONFIG}" ] ||
+	die "teamvault-cli config not found: ${TEAMVAULT_CLI_CONFIG}"
 command -v teamvault-cli >/dev/null 2>&1 ||
 	die "teamvault-cli not found on PATH; it resolves the lookup key in ${TEMPLATE}"
 
@@ -82,10 +87,11 @@ TEAMVAULT_KEY="$(sed -nE 's/.*"([A-Za-z0-9]{6,12})" \| teamvaultUser.*/\1/p' "${
 [ -n "${TEAMVAULT_KEY}" ] || die "no teamvaultUser lookup key found in ${TEMPLATE}"
 # `|| true` is load-bearing: grep exits 1 when nothing matches, pipefail propagates
 # that through `head`, and `set -e` would kill the script at this assignment — before
-# the guard below could name the problem. A bare-host auths key (registry.example.com
-# rather than an https:// URL) is valid dockerconfigjson, so the no-match path is real.
+# the guard below could name the problem. Only an `https://`-prefixed auths key is
+# supported: a bare-host key (registry.example.com) is valid dockerconfigjson but this
+# extraction cannot read it, so it fails here rather than pushing under the wrong key.
 AUTHS_KEY="$(grep -oE 'https?://[^"]+' "${TEMPLATE}" | head -1 || true)"
-[ -n "${AUTHS_KEY}" ] || die "no registry auths key found in ${TEMPLATE}"
+[ -n "${AUTHS_KEY}" ] || die "no https://-prefixed auths key found in ${TEMPLATE} (a bare host is valid dockerconfigjson, but this extraction cannot read it)"
 
 # teamvault-cli, not teamvault-config-parser: the parser takes its password from
 # the config file, which holds only url and user, so it authenticates unprivileged
