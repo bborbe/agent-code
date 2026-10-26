@@ -28,11 +28,11 @@ die() {
 [ -f "${TEMPLATE}" ] || die "template not found: ${TEMPLATE}"
 
 # teamvault-cli's own config, which is NOT the file `make apply` reads: Makefile.k8s
-# passes ${TEAMVAULT}, defaulted in Makefile.variables to ~/.teamvault.json, and
-# teamvault-config-parser consumes that. This script needs the CLI instead (see the
-# note below), so it needs the CLI's config. Deliberately a different variable name:
-# a TEAMVAULT exported by the make environment would otherwise silently point this
-# at the parser's file.
+# passes ${TEAMVAULT}, defaulted in Makefile.variables to the operator's teamvault
+# config, and teamvault-config-parser consumes that. This script needs the CLI
+# instead (see the note below), so it needs the CLI's config. Deliberately a
+# different variable name: a TEAMVAULT exported by the make environment would
+# otherwise silently point this at the parser's file.
 TEAMVAULT_CLI_CONFIG="${TEAMVAULT_CLI_CONFIG:-${HOME}/.config/teamvault-cli/config.json}"
 [ -f "${TEAMVAULT_CLI_CONFIG}" ] || die "teamvault-cli config not found: ${TEAMVAULT_CLI_CONFIG} (set TEAMVAULT_CLI_CONFIG to override)"
 command -v teamvault-cli >/dev/null 2>&1 ||
