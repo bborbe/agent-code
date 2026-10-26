@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## Unreleased
+
+- feat: `BUILD_TARGET` selects where `make build` runs — `local` (the default) keeps the Docker daemon, any other value builds in that cluster as a Job from `hack/build-job.yaml`, so a release image no longer needs the Mac
+- fix: the Dockerfile vendors modules when `vendor/` is absent, so the remote arm builds from a clean clone
+
 ## v0.2.10
 
 - chore: update Go to 1.27.3, github.com/bborbe/agent to v0.111.0, github.com/bborbe/kafka to v1.28.4, github.com/bborbe/sentry to v1.10.5, github.com/bborbe/strimzi to v1.8.21, github.com/bborbe/vault-cli to v0.177.0
