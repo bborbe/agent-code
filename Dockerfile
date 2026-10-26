@@ -1,4 +1,10 @@
-ARG DOCKER_REGISTRY=docker.prod.nuke.benjamin-borbe.de:443
+# Default to Docker Hub. The Makefile always passes DOCKER_REGISTRY explicitly,
+# so this default only applies to a build that passes no build-arg — which is
+# exactly the remote arm: hack/build-job.yaml forwards SOURCE_DATE_EPOCH and
+# nothing else. Leaving the authenticated nuke mirror here made the cluster pull
+# 401 Unauthorized, since the Job mounts the docker.io push credential and not a
+# mirror login.
+ARG DOCKER_REGISTRY=docker.io
 FROM ${DOCKER_REGISTRY}/golang:1.27.3 AS build
 ARG BUILD_GIT_VERSION=dev
 ARG BUILD_GIT_COMMIT=none
