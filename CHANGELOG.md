@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 
 - fix: `hack/build-cluster-bootstrap.sh` passes the push credential to `jq` through the environment instead of argv, reads the registry auths key from the template instead of hardcoding docker.io's, checks for a missing kubeconfig the way the runner does, and takes its config path from `TEAMVAULT_CLI_CONFIG` — falling back through `TEAMVAULT_CONFIG` and the CLI's own defaults, so a config teamvault-cli would have found is not reported missing. The previous comment claimed its path was the one `make apply` uses and that the repo had an `.envrc`, and neither held. The auths-key extraction no longer aborts the script silently when the template carries no `https://` key: a bare host is a valid dockerconfigjson key, and `grep` exiting 1 under `set -e` killed the script before its own guard could name the problem
 
+- fix: a finished build Job is replaced rather than blocking the next build of the same tag. It keeps its name for `ttlSecondsAfterFinished` (24h), so the previous outright refusal made the retry after a failed build impossible without a manual `kubectl delete job`; a still-running Job is still refused. `TIMEOUT` now goes through the same newline-rejecting check as every other rendered value, and an ambient `SOURCE_DATE_EPOCH` that disagrees with the commit fails on the Mac instead of inside the cluster
+
 ## v0.3.0
 
 - feat: `BUILD_TARGET` selects where `make build` runs — `local` (the default) keeps the Docker daemon, any other value builds in that cluster as a Job from `hack/build-job.yaml`, so a release image no longer needs the Mac
