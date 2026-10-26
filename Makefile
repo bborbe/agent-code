@@ -1,12 +1,16 @@
 include Makefile.variables
 include Makefile.precommit
-include Makefile.docker
 
 DOCKER_REGISTRY ?= docker.io
 IMAGE ?= bborbe/agent-code
 ifeq ($(VERSION),)
 	VERSION := $(shell git describe --tags `git rev-list --tags --max-count=1`)
 endif
+
+# Included AFTER VERSION is assigned: Makefile.docker's guard is evaluated at parse
+# time, so including it above this block would check an empty VERSION, pass, and let
+# the tag through to the shell lines that interpolate it.
+include Makefile.docker
 
 # Local dev only. Runtime config (kafka brokers, sentry DSN, stage vars) and the
 # full deployment moved to the quant config repo — this is now a publish-only

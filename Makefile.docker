@@ -15,6 +15,26 @@ BUILD_PUSH_SECRET ?= buildkit-push
 # image that matches no release and is reproducible from nothing.
 REF ?= $(VERSION)
 
+# A make value reaches the shell by textual substitution, and the shell re-expands $(…)
+# and backticks even inside double quotes — so refusing only the quote characters is not
+# enough: '$', '(', ')' and '`' are all legal in a git refname and all re-expand. This
+# is evaluated at PARSE time, before any target, because a recipe-line guard runs too
+# late: check-version-tag, upload and clean render the same values and would already
+# have run. Any shell-active character in any of them refuses the whole invocation.
+BUILD_VALUES = $(BUILD_TARGET)$(BUILD_NAMESPACE)$(BUILD_REPO_URL)$(REF)$(VERSION)$(BUILD_DOCKERFILE)$(DOCKER_REGISTRY)$(IMAGE)$(BUILD_PUSH_SECRET)$(BUILD_TIMEOUT)$(BRANCH)
+SHELL_ACTIVE := ' " $$ ` \ ( ) ; & | < > ! *
+# Scoped to the goals that render these values. REF and VERSION default to the current
+# branch name and the newest tag, and an ordinary refname may legally contain '(' or
+# '!', so an unscoped check would abort `make test` on a branch called feat/a(b).
+# Evaluating at parse time still puts it ahead of every prerequisite, which a
+# recipe-line guard does not — check-version-tag renders the same values and would
+# already have run.
+ifneq ($(filter build upload clean buca,$(MAKECMDGOALS)),)
+ifneq ($(strip $(foreach c,$(SHELL_ACTIVE),$(findstring $(c),$(BUILD_VALUES)))),)
+$(error a build value contains a shell metacharacter; refusing to build)
+endif
+endif
+
 .PHONY: build
 build: check-version-tag check-go-mod
 	@if [ -z "$(VERSION)" ]; then echo "ERROR: no VERSION set and no git tag found — set VERSION=vX.Y.Z or create a tag" >&2; exit 1; fi
@@ -25,12 +45,12 @@ ifeq ($(BUILD_TARGET),local)
 	--no-cache \
 	--rm=true \
 	--platform=linux/amd64 \
-	--build-arg DOCKER_REGISTRY=$(DOCKER_REGISTRY) \
+	--build-arg DOCKER_REGISTRY="$(DOCKER_REGISTRY)" \
 	--build-arg BUILD_GIT_VERSION=$$(git describe --tags --always --dirty) \
 	--build-arg BUILD_GIT_COMMIT=$$(git rev-parse --short HEAD) \
 	--build-arg BUILD_DATE=$$(date -u +%Y-%m-%dT%H:%M:%SZ) \
-	-t $(DOCKER_REGISTRY)/$(IMAGE):$(VERSION) \
-	-f Dockerfile .
+	-t "$(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)" \
+	-f "$(BUILD_DOCKERFILE)" .
 else
 	BUILD_TARGET='$(BUILD_TARGET)' \
 	NAMESPACE='$(BUILD_NAMESPACE)' \
@@ -85,13 +105,13 @@ endif
 .PHONY: upload
 upload:
 ifeq ($(BUILD_TARGET),local)
-	docker push $(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)
+	docker push "$(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)"
 endif
 
 .PHONY: clean
 clean:
 ifeq ($(BUILD_TARGET),local)
-	docker rmi $(DOCKER_REGISTRY)/$(IMAGE):$(VERSION) || true
+	docker rmi "$(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)" || true
 	docker image prune -f || true
 	docker builder prune --all -f || true
 	rm -rf vendor
