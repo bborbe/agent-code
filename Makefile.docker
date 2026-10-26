@@ -105,13 +105,13 @@ endif
 .PHONY: upload
 upload:
 ifeq ($(BUILD_TARGET),local)
-	docker push $(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)
+	docker push "$(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)"
 endif
 
 .PHONY: clean
 clean:
 ifeq ($(BUILD_TARGET),local)
-	docker rmi $(DOCKER_REGISTRY)/$(IMAGE):$(VERSION) || true
+	docker rmi "$(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)" || true
 	docker image prune -f || true
 	docker builder prune --all -f || true
 	rm -rf vendor
