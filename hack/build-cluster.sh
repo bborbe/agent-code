@@ -57,6 +57,8 @@ printf '%s' "${DOCKERFILE}" | grep -qE '^[A-Za-z0-9._/-]+$' ||
 	die "DOCKERFILE '${DOCKERFILE}' contains characters outside [A-Za-z0-9._/-]"
 printf '%s' "${PUSH_SECRET}" | grep -qE '^[a-z0-9]([-a-z0-9.]*[a-z0-9])?$' ||
 	die "PUSH_SECRET '${PUSH_SECRET}' is not a valid Kubernetes secret name"
+printf '%s' "${NAMESPACE}" | grep -qE '^[a-z0-9]([-a-z0-9]*[a-z0-9])?$' ||
+	die "NAMESPACE '${NAMESPACE}' is not a valid Kubernetes namespace name"
 printf '%s' "${TIMEOUT}" | grep -qE '^[0-9]+$' ||
 	die "TIMEOUT '${TIMEOUT}' is not a number of seconds"
 case "${PUSH}" in
@@ -92,6 +94,7 @@ trap 'rm -f "${rendered}"' EXIT
 
 sed \
 	-e "s|__JOB_NAME__|${JOB_NAME}|g" \
+	-e "s|__NAMESPACE__|${NAMESPACE}|g" \
 	-e "s|__REPO_URL__|${REPO_URL}|g" \
 	-e "s|__REF__|${REF}|g" \
 	-e "s|__TAG__|${TAG}|g" \
