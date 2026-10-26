@@ -62,14 +62,21 @@ check-version-tag:
 		fi; \
 	fi
 
+# The local arm needs vendor/ on disk before `docker build` copies the context.
+# The remote arm does not: the Job clones a clean tree and the Dockerfile vendors
+# inside the image. Running it anyway would need a local Go toolchain and network
+# for a build that is supposed to need neither, and would leave vendor/ behind
+# because `clean` is a no-op for remote targets.
 .PHONY: check-go-mod
 check-go-mod:
+ifeq ($(BUILD_TARGET),local)
 	@if [ -f "go.mod" ]; then \
 		echo "go.mod found, running go mod vendor..."; \
 		go mod vendor; \
 	else \
 		echo "go.mod not found, skipping go mod vendor."; \
 	fi
+endif
 
 # A remote target pushes from inside the cluster and never loads the image on
 # this machine, so there is nothing here to push and nothing to remove. Guard
