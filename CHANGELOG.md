@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## Unreleased
+## v0.3.0
 
 - feat: `BUILD_TARGET` selects where `make build` runs — `local` (the default) keeps the Docker daemon, any other value builds in that cluster as a Job from `hack/build-job.yaml`, so a release image no longer needs the Mac
 - fix: the Dockerfile vendors modules when `vendor/` is absent, so the remote arm builds from a clean clone
