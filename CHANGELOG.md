@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-- fix: `hack/build-cluster-bootstrap.sh` passes the push credential to `jq` through the environment instead of argv, reads the registry auths key from the template instead of hardcoding docker.io's, checks for a missing kubeconfig the way the runner does, and takes its config path from `TEAMVAULT_CLI_CONFIG` — the previous comment claimed that file was the one `make apply` uses and that the repo had an `.envrc`, and neither held
+- fix: `hack/build-cluster-bootstrap.sh` passes the push credential to `jq` through the environment instead of argv, reads the registry auths key from the template instead of hardcoding docker.io's, checks for a missing kubeconfig the way the runner does, and takes its config path from `TEAMVAULT_CLI_CONFIG` — falling back through `TEAMVAULT_CONFIG` and the CLI's own defaults, so a config teamvault-cli would have found is not reported missing. The previous comment claimed its path was the one `make apply` uses and that the repo had an `.envrc`, and neither held. The auths-key extraction no longer aborts the script silently when the template carries no `https://` key: a bare host is a valid dockerconfigjson key, and `grep` exiting 1 under `set -e` killed the script before its own guard could name the problem
 
 ## v0.3.0
 
