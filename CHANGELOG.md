@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## Unreleased
+
+- chore: update github.com/bborbe/agent to v0.131.0, github.com/bborbe/cqrs to v0.6.14, github.com/bborbe/errors to v1.6.5, github.com/bborbe/kafka to v1.29.1, github.com/bborbe/sentry to v1.10.6, github.com/bborbe/service to v1.11.1, github.com/bborbe/time to v1.27.18, github.com/bborbe/vault-cli to v0.183.0
+
 ## v0.3.1
 
 - fix: `hack/build-cluster-bootstrap.sh` passes the push credential to `jq` through the environment instead of argv, reads the registry auths key from the template instead of hardcoding docker.io's, checks for a missing kubeconfig the way the runner does, and takes its config path from `TEAMVAULT_CLI_CONFIG` — falling back through `TEAMVAULT_CONFIG` and the CLI's own defaults, so a config teamvault-cli would have found is not reported missing. The previous comment claimed its path was the one `make apply` uses and that the repo had an `.envrc`, and neither held. The auths-key extraction no longer aborts the script silently when the template carries no `https://` key: a bare host is a valid dockerconfigjson key, and `grep` exiting 1 under `set -e` killed the script before its own guard could name the problem
