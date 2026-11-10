@@ -35,10 +35,13 @@ $(error a build value contains a shell metacharacter; refusing to build)
 endif
 endif
 
+# The prerequisites are LOCAL-ARM ONLY: `check-version-tag` asserts the tree sits at
+# the tag it claims to build and `check-go-mod` vendors locally — both describe HEAD,
+# while the cluster arm builds REF, which need not be HEAD or even exist locally.
 .PHONY: build
+ifeq ($(BUILD_TARGET),local)
 build: check-version-tag check-go-mod
 	@if [ -z "$(VERSION)" ]; then echo "ERROR: no VERSION set and no git tag found — set VERSION=vX.Y.Z or create a tag" >&2; exit 1; fi
-ifeq ($(BUILD_TARGET),local)
 	DOCKER_BUILDKIT=1 \
 	docker build \
 	--pull \
@@ -52,6 +55,8 @@ ifeq ($(BUILD_TARGET),local)
 	-t "$(DOCKER_REGISTRY)/$(IMAGE):$(VERSION)" \
 	-f "$(BUILD_DOCKERFILE)" .
 else
+build:
+	@if [ -z "$(VERSION)" ]; then echo "ERROR: no VERSION set and no git tag found — set VERSION=vX.Y.Z or create a tag" >&2; exit 1; fi
 	BUILD_TARGET='$(BUILD_TARGET)' \
 	NAMESPACE='$(BUILD_NAMESPACE)' \
 	REPO_URL='$(BUILD_REPO_URL)' \

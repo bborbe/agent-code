@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## Unreleased
+
+- fix: `Makefile.docker` runs `check-version-tag` and `check-go-mod` on the local build arm only. The `build` target is split the way `agent-claude`'s is, so `make build BUILD_TARGET=<cluster>` no longer aborts at the local tag guard before creating its Job
+
 ## v0.3.4
 
 - chore: restate the do-not-merge contract in the gate workflow
