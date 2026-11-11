@@ -6,7 +6,7 @@
 # the mirror here, a remote build that passed no build-arg died 401 Unauthorized
 # pulling golang.
 ARG DOCKER_REGISTRY=docker.io
-FROM ${DOCKER_REGISTRY}/golang:1.27.3 AS build
+FROM ${DOCKER_REGISTRY}/golang:1.27.4 AS build
 ARG BUILD_GIT_VERSION=dev
 ARG BUILD_GIT_COMMIT=none
 ARG BUILD_DATE=unknown
