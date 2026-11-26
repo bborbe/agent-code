@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## Unreleased
+
+- chore: update github.com/IBM/sarama to v1.62.0, github.com/bborbe/agent to v0.148.3, github.com/bborbe/cqrs to v0.6.17, github.com/bborbe/errors to v1.7.1, github.com/bborbe/kafka to v1.30.3, github.com/bborbe/sentry to v1.11.1, github.com/bborbe/service to v1.12.2, github.com/bborbe/time to v1.27.29, github.com/bborbe/vault-cli to v0.200.6
+
 ## v0.4.2
 
 - chore: remove stale vulnerability ignore IDs that no longer apply
